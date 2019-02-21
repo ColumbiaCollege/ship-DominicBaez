@@ -4,16 +4,21 @@
 //variables for position
 float xPos =0;
 float yPos = 0;
-
+float angle;
 //Booleans for movement
 boolean right = false;
 boolean left = false;
 boolean up = false;
 boolean down = false;
+
+PImage img;
 void setup() {
+  //frameRate(2);
   //window modifications
   size(1000, 800);
-  background(255);
+  background(0);
+  img = loadImage ("y-wing.jpg");
+  imageMode(CENTER);
 
   //initial position
   xPos = width/2;
@@ -26,18 +31,19 @@ void setup() {
 
 void draw() {
   //wipe
-  background(255);
+  background(0);
 
   //update position
   if (left) {
-    xPos = xPos - 1;
-    if (xPos<0) {
-      xPos = 1000;
+    //xPos = xPos - 1;
+    angle++;
+    if (xPos<-40) {
+      xPos = width;
     }
   }
   if (right) {
     xPos = xPos + 1;
-    if (xPos>1000) {
+    if (xPos>1040) {
       xPos = 0;
     }
   }
@@ -48,12 +54,19 @@ void draw() {
     }
   }
   if (up) {
-    yPos = yPos - 1;
+    //yPos = yPos - 1;
+    xPos += cos(radians(angle));
+    yPos += sin(radians(angle));
+    
     if (yPos<0) {
-      yPos = 800;
+      yPos = height;
+    }
   }
   //draw shape
-  ellipse(xPos, yPos, 20, 20);
+  translate(xPos,yPos);
+  rotate(radians(angle));
+  
+image(img,0,0,50,30);
 }
 
 void keyPressed() {
