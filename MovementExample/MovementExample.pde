@@ -8,7 +8,8 @@ float yPos = 0;
 //Booleans for movement
 boolean right = false;
 boolean left = false;
-
+boolean up = false;
+boolean down = false;
 void setup() {
   //window modifications
   size(1000, 800);
@@ -31,13 +32,52 @@ void draw() {
   if (left) {
     xPos = xPos - 1;
   }
-
+  if (right) {
+    xPos = xPos + 1;
+  }
+  if (down) {
+    yPos = yPos + 1;
+  }
+  if (up) {
+    yPos = yPos - 1;
+  }
   //draw shape
   ellipse(xPos, yPos, 20, 20);
 }
 
 void keyPressed() {
+  if (keyPressed == true) {
+    if (key == 'a') {
+      left = true;
+    }
+  }
+  if (keyPressed == true) {
+    if (key == 'd') {
+      right = true;
+    }
+  }
+  if (keyPressed == true) {
+    if (key == 's') {
+      down = true;
+    }
+  }
+  if (keyPressed == true) {
+    if (key == 'w') {
+      up = true;
+    }
+  }
+}
+void keyReleased() {
   if (key == 'a') {
-    left = true;
+    left = false;
+  }
+  if (key == 'd') {
+    right = false;
+  }
+  if (key == 's') {
+    down = false;
+  }
+  if (key == 'w') {
+    up = false;
   }
 }
