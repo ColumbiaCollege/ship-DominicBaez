@@ -31,15 +31,26 @@ void draw() {
   //update position
   if (left) {
     xPos = xPos - 1;
+    if (xPos<0) {
+      xPos = 1000;
+    }
   }
   if (right) {
     xPos = xPos + 1;
+    if (xPos>1000) {
+      xPos = 0;
+    }
   }
   if (down) {
     yPos = yPos + 1;
+    if (yPos>800) {
+      yPos = 0;
+    }
   }
   if (up) {
     yPos = yPos - 1;
+    if (yPos<0) {
+      yPos = 800;
   }
   //draw shape
   ellipse(xPos, yPos, 20, 20);
