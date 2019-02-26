@@ -43,6 +43,12 @@ void draw() {
     if (xPos<-40) {
       xPos = width;
     }
+    if (yPos<0) {
+      yPos = height;
+    }
+    if (xPos>1040) {
+      xPos = 0;
+    }
   }
   if (up) {
     xPos += cos(radians(angle));
@@ -54,14 +60,14 @@ void draw() {
     if (xPos>1040) {
       xPos = 0;
     }
-    //    if (yPos>800) {
-    //  yPos = 0;
-    //}
-    //if (xPos<-40) {
-    //  xPos = width;
-    //}
+    if (yPos>800) {
+      yPos = 0;
+    }
+    if (xPos<-40) {
+      xPos = width;
+    }
   }
-  //draw shape
+  //draw image
   translate(xPos, yPos);
   rotate(radians(angle));
 
