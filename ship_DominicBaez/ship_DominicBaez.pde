@@ -1,5 +1,4 @@
-//Movement Example Code
-//Please note, what I have here is not the only method to complete this assignment. If you would like to scrap it, you may.
+//Movement code for y-wing 
 
 //variables for position
 float xPos =0;
@@ -13,20 +12,15 @@ boolean down = false;
 
 PImage img;
 void setup() {
-  //frameRate(2);
   //window modifications
   size(1000, 800);
   background(0);
   img = loadImage ("y-wing.jpg");
   imageMode(CENTER);
 
-  //initial position
+  //starting position for image
   xPos = width/2;
   yPos = height/2;
-
-  //shape properties
-  noStroke();
-  fill(0, 0, 255);
 }
 
 void draw() {
@@ -35,38 +29,43 @@ void draw() {
 
   //update position
   if (left) {
-    //xPos = xPos - 1;
+    angle--;
+  }
+  if (right) {
     angle++;
+  }
+  if (down) {
+    xPos -= cos(radians(angle));
+    yPos -= sin(radians(angle));
+    if (yPos>800) {
+      yPos = 0;
+    }
     if (xPos<-40) {
       xPos = width;
     }
   }
-  if (right) {
-    xPos = xPos + 1;
-    if (xPos>1040) {
-      xPos = 0;
-    }
-  }
-  if (down) {
-    yPos = yPos + 1;
-    if (yPos>800) {
-      yPos = 0;
-    }
-  }
   if (up) {
-    //yPos = yPos - 1;
     xPos += cos(radians(angle));
     yPos += sin(radians(angle));
-    
+
     if (yPos<0) {
       yPos = height;
     }
+    if (xPos>1040) {
+      xPos = 0;
+    }
+    //    if (yPos>800) {
+    //  yPos = 0;
+    //}
+    //if (xPos<-40) {
+    //  xPos = width;
+    //}
   }
   //draw shape
-  translate(xPos,yPos);
+  translate(xPos, yPos);
   rotate(radians(angle));
-  
-image(img,0,0,50,30);
+
+  image(img, 0, 0, 50, 30);
 }
 
 void keyPressed() {
